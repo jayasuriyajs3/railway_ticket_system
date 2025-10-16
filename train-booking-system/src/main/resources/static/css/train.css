@@ -1,0 +1,201 @@
+/* train.css */
+
+/* --- Base & Layout --- */
+body {
+    font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f0f4f8; /* Light gray-blue background */
+    margin: 0;
+    padding: 0;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    color: #1e3a8a; /* Deep blue heading */
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Button Styles --- */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background-color: #f59e0b; /* Bright yellow/orange */
+    color: #1f2937; /* Dark text for contrast */
+}
+
+.btn-primary:hover {
+    background-color: #d97706;
+    transform: translateY(-2px);
+}
+
+.btn-edit {
+    background-color: #3b82f6; /* Blue for Edit */
+    color: white;
+}
+
+.btn-delete {
+    background-color: #ef4444; /* Red for Delete */
+    color: white;
+}
+
+.btn-edit:hover, .btn-delete:hover {
+    opacity: 0.9;
+    transform: none; /* Only primary button lifts */
+}
+
+/* --- Train List Card Layout --- */
+
+.train-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 10px;
+}
+
+.train-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 10px 0;
+}
+
+.train-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    border-left: 8px solid #1e3a8a; /* Train color accent */
+}
+
+.train-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background-color: #1e3a8a; /* Deep blue header */
+    color: white;
+    padding: 15px 20px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.route-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #e5e7eb;
+    padding-bottom: 10px;
+}
+
+.route-point {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.route-point strong {
+    display: block;
+    font-size: 1.1rem;
+    color: #1e3a8a;
+}
+
+.route-point span {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.price-details div {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 0.95rem;
+}
+
+.price-details label {
+    font-weight: 500;
+    color: #4b5563;
+}
+
+.discounted-price {
+    color: #059669; /* Success green */
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* --- Form Styles --- */
+
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #374151;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Trains</title>
+    <link rel="stylesheet" th:href="@{/css/train.css}">
+    <script th:src="@{/js/train.js}" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1>🚂 Train Schedule Management</h1>
+
+    <div class="train-list-header">
+        <span style="font-weight: 500; color: #4b5563;" th:text="'Total Trains: ' + ${#lists.size(trains)}">Total Trains: 5</span>
+        <a href="/trains/new" class="btn btn-primary">➕ Add New Route</a>
+    </div>
+
+    <div class="train-grid">
+        <div class="train-card" th:each="train : ${trains}">
+            <div class="card-header">
+                <span th:text="${train.name}">Express 123</span>
+                <span style="font-size: 0.8rem; opacity: 0.8;">#<span th:text="${train.id}">1</span></span>
+            </div>
+            
+            <div class="card-body">
+                <div class="route-info">
+                    <div class="route-point">
+                        <strong><span th:text="${train.source}">Source</span></strong>
+                        <span>DEPARTURE</span>
+                    </div>
+                    <div style="font-size: 1.5rem; color: #d1d5db;">→</div>
+                    <div class="route-point">
+                        <strong><span th:text="${train.destination}">Destination</span></strong>
+                        <span>ARRIVAL</span>
+                    </div>
+                </div>
+
+                <div class="price-details">
+                    <div>
+                        <label>Base Price:</label>
+                        <span style="text-decoration: line-through; color: #9ca3af;">$<span th:text="${#numbers.formatDecimal(train.basePrice, 0, 'COMMA', 2, 'POINT')}">100.00</span></span>
+                    </div>
+                    <div>
+                        <label>Discount:</label>
+                        <span th:text="${train.discountPercentage} + '%'">15%</span>
+                    </div>
+                    <div>
+                        <label>Final Price:</label>
+                        <span class="discounted-price">$<span th:text="${#numbers.formatDecimal(train.basePrice * (1 - train.discountPercentage / 100), 0, 'COMMA', 2, 'POINT')}">85.00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-actions">
+                <a th:href="@{/trains/edit/{id}(id=${train.id})}" class="btn btn-edit">✏️ Edit</a>
+                <a th:href="@{/trains/delete/{id}(id=${train.id})}" class="btn btn-delete delete-btn">🗑️ Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

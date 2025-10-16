@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users</title>
+    <link rel="stylesheet" th:href="@{/css/user.css}">
+    <script th:src="@{/js/user.js}" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1>👥 User Directory</h1>
+
+    <div class="user-list-header">
+        <span style="font-weight: 500; color: #4b5563;" th:text="'Active Users: ' + ${#lists.size(users)}">Active Users: 0</span>
+        <a href="/users/new" class="btn btn-primary">⭐ Add New User</a>
+    </div>
+
+    <div class="user-grid">
+        <div class="user-card" th:each="user : ${users}">
+            <div class="card-header">
+                <div class="user-name" th:text="${user.name}">John Doe</div>
+                <div class="user-id">ID: <span th:text="${user.id}">1</span></div>
+            </div>
+            
+            <div class="card-body">
+                <div class="user-detail">
+                    <strong style="margin-right: 10px;">Email:</strong>
+                    <span th:text="${user.email}">john.doe@example.com</span>
+                </div>
+                <div class="user-detail">
+                    <strong style="margin-right: 10px;">Status:</strong>
+                    <span style="color: #059669;">Active</span>
+                </div>
+            </div>
+
+            <div class="card-actions">
+                <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-action btn-edit">✏️ Edit</a>
+                <a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-action btn-delete delete-btn">🗑️ Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

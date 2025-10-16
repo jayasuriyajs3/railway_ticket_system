@@ -1,0 +1,203 @@
+/* ticket.css */
+
+/* --- Base & Layout --- */
+body {
+    font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f7f9fc; /* Light, elegant background */
+    margin: 0;
+    padding: 0;
+    color: #1a202c;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    color: #003366; /* Deep corporate blue */
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Button Styles --- */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background-color: #007bff; /* Vibrant blue for main action */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn-edit {
+    background-color: #ffc107; /* Gold/yellow for Edit */
+    color: #333;
+    font-weight: 500;
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Red for Delete */
+    color: white;
+}
+
+.btn-action {
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 0 4px;
+}
+
+/* --- Ticket List (Boarding Pass Cards) --- */
+
+.ticket-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 30px;
+    padding: 10px 0;
+}
+
+.ticket-card {
+    background: linear-gradient(to right, #ffffff, #f0f7ff);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.ticket-card:hover {
+    transform: translateY(-3px);
+}
+
+.card-main {
+    flex-grow: 1;
+    padding: 20px 25px;
+    border-right: 1px dashed #ced4da;
+}
+
+.card-strip {
+    width: 120px;
+    background-color: #003366; /* Deep blue accent */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.strip-detail {
+    font-size: 0.9rem;
+    line-height: 1.2;
+    opacity: 0.9;
+}
+
+.strip-detail strong {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.ticket-route {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.route-station strong {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #003366;
+}
+
+.route-station span {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.route-arrow {
+    font-size: 2rem;
+    color: #ffc107; /* Gold/Orange accent */
+}
+
+.ticket-details div {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-top: 1px solid #f8f9fa;
+    font-size: 0.9rem;
+}
+
+.ticket-details label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.ticket-status {
+    font-weight: 700;
+}
+
+.status-BOOKED { color: #28a745; }
+.status-CANCELLED { color: #dc3545; }
+
+/* --- Form Styles --- */
+
+.form-container {
+    max-width: 700px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #374151;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}

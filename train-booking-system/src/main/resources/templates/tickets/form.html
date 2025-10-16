@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ticket Form</title>
+    <link rel="stylesheet" th:href="@{/css/ticket.css}">
+    <script th:src="@{/js/ticket.js}" defer></script>
+    <script>
+        // JS logic moved to inline script to use Thymeleaf variables
+        function calculatePrice() {
+            const trainSelect = document.getElementById('trainSelect');
+            const selectedTrain = trainSelect.options[trainSelect.selectedIndex];
+            
+            // Check if a valid option is selected
+            if (selectedTrain && selectedTrain.value) {
+                const basePrice = parseFloat(selectedTrain.getAttribute('data-base-price'));
+                const discount = parseFloat(selectedTrain.getAttribute('data-discount'));
+                
+                if (!isNaN(basePrice) && !isNaN(discount)) {
+                    const finalPrice = basePrice - (basePrice * (discount / 100));
+                    document.getElementById('price').value = finalPrice.toFixed(2);
+                }
+            } else {
+                document.getElementById('price').value = ''; // Clear if 'Select a train' is chosen
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="form-container">
+    <h1 th:if="${ticket.id == null}">Book New Journey 🚀</h1>
+    <h1 th:if="${ticket.id != null}">Update Ticket Details</h1>
+
+    <form th:action="${ticket.id == null} ? @{/tickets} : @{/tickets/update/{id}(id=${ticket.id})}"
+          th:object="${ticket}" method="post">
+
+        <div class="form-group">
+            <label for="userSelect">Passenger:</label>
+            <select id="userSelect" th:field="*{user}" required>
+                <option value="">Select a user</option>
+                <option th:each="user : ${users}"
+                        th:value="${user.id}"
+                        th:text="${user.name} + ' (ID: ' + ${user.id} + ')'">
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="trainSelect">Train Route:</label>
+            <select id="trainSelect" th:field="*{train}" required onchange="calculatePrice()">
+                <option value="">Select a train</option>
+                <option th:each="train : ${trains}"
+                        th:value="${train.id}"
+                        th:text="${train.name + ' (' + train.source + ' → ' + train.destination + ')'}"
+                        th:attr="data-base-price=${train.basePrice},data-discount=${train.discountPercentage}">
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="journeyDate">Journey Date:</label>
+            <input type="date" id="journeyDate" th:field="*{journeyDate}" required th:min="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" />
+        </div>
+
+        <div class="form-group">
+            <label for="price">Final Price (₹):</label>
+            <input type="number" id="price" th:field="*{price}" readonly placeholder="Select a train to calculate price" />
+        </div>
+        
+        <input type="hidden" th:field="*{status}" value="BOOKED" />
+        <input type="hidden" th:field="*{seatNumber}" value="TBD" th:if="${ticket.id == null}" /> <button type="submit" class="btn btn-primary" style="width: 100%;">
+            <span th:if="${ticket.id == null}">✅ Confirm Booking</span>
+            <span th:if="${ticket.id != null}">💾 Update Ticket</span>
+        </button>
+    </form>
+</div>
+</body>
+</html>
